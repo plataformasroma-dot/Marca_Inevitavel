@@ -1,0 +1,1048 @@
+---
+const standardCheckout =
+  import.meta.env.PUBLIC_STANDARD_CHECKOUT ??
+  'https://lastlink.com/p/C9A97E88D/checkout-payment';
+const vipCheckout =
+  import.meta.env.PUBLIC_VIP_CHECKOUT ??
+  'https://lastlink.com/p/C11C7A91B/checkout-payment';
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Imersão Marca Inevitável — imersão estratégica ao vivo com Yasmin Corbo."
+    />
+    <title>Marca Inevitável — Imersão com Yasmin Corbo</title>
+    <style>
+      @font-face {
+        font-family: 'PP Editorial Old';
+        src: url('/fonts/PPEDITORIALOLD-REGULAR.ttf') format('truetype');
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'PP Editorial Old';
+        src: url('/fonts/PPEDITORIALOLD-ITALIC.ttf') format('truetype');
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Aileron Brand';
+        src: url('/fonts/Aileron-Bold.ttf') format('truetype');
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Aileron Brand';
+        src: url('/fonts/Aileron-Bold.ttf') format('truetype');
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+      }
+
+      :root {
+        --bg: #f5f0e8;
+        --bg-2: #ede5d8;
+        --ink: #0b112e;
+        --ink-soft: #2a3050;
+        --muted: #6b7088;
+        --hairline: rgba(11, 17, 46, 0.16);
+        --granada: #f18523;
+        --granada-deep: #c96a14;
+        --gold: #0b112e;
+        --container: min(1180px, 100% - 72px);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Aileron Brand', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+        font-synthesis: none;
+      }
+
+      body {
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .serif {
+        font-family: 'PP Editorial Old', Georgia, serif;
+      }
+
+      .mono {
+        font-family: 'Aileron Brand', Arial, sans-serif;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        font-size: 11px;
+      }
+
+      .grain::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.28;
+        mix-blend-mode: multiply;
+        z-index: 50;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12  0 0 0 0 0.08  0 0 0 0 0.06  0 0 0 0.1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100dvh;
+        padding: 82px 0 40px;
+        background:
+          linear-gradient(130deg, rgba(11, 17, 46, 0.72), rgba(11, 17, 46, 0.15) 60%, rgba(11, 17, 46, 0.56)),
+          url('/assets/marca-inevitavel-hero.webp') center/cover no-repeat;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(11, 17, 46, 0.17), rgba(11, 17, 46, 0.72));
+        z-index: -1;
+      }
+
+      .shell {
+        width: var(--container);
+        margin: 0 auto;
+      }
+
+      .hero-marquee {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 80;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(4, 8, 34, 0.72);
+        backdrop-filter: blur(8px);
+        pointer-events: none;
+      }
+
+      .marquee-track {
+        display: inline-flex;
+        width: max-content;
+        min-width: 200%;
+        flex-wrap: nowrap;
+        will-change: transform;
+        animation: marquee 26s linear infinite;
+      }
+
+      .marquee-copy {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        gap: 24px;
+        padding: 16px 12px;
+        white-space: nowrap;
+        color: var(--granada);
+        font-family: 'Aileron Brand', Arial, sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .marquee-copy span {
+        opacity: 0.96;
+        display: inline-block;
+        flex: 0 0 auto;
+      }
+
+      .marquee-copy .dot {
+        opacity: 0.45;
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .hero-main {
+        position: relative;
+        margin-top: 0;
+        min-height: calc(100dvh - 122px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        text-align: center;
+      }
+
+      .hero-title {
+        margin: 0 0 12px;
+        font-size: clamp(58px, 10.8vw, 180px);
+        line-height: 0.92;
+        letter-spacing: -0.04em;
+        font-weight: 400;
+        color: var(--bg);
+      }
+
+      .hero-title span {
+        color: var(--granada);
+        font-style: italic;
+      }
+
+      .hero-grid {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-copy {
+        max-width: 760px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-subcopy {
+        color: #fff;
+        font-size: clamp(15px, 1.5vw, 19px);
+        max-width: 700px;
+        line-height: 1.34;
+        margin: 0;
+      }
+
+      .hero-subcopy em {
+        color: var(--bg);
+        font-style: italic;
+        font-size: clamp(20px, 2.2vw, 24px);
+      }
+
+      .text-soft {
+        color: var(--muted);
+      }
+
+      .section {
+        padding: 104px 0;
+      }
+
+      .section + .section {
+        border-top: 1px solid var(--hairline);
+      }
+
+      .label {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+
+      .label strong {
+        color: var(--granada);
+        font-size: 12px;
+        font-family: 'JetBrains Mono', monospace;
+        letter-spacing: 0.14em;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: minmax(240px, 300px) 1fr;
+        gap: 88px;
+        align-items: start;
+      }
+
+      .section-title {
+        margin: 0 0 14px;
+        font-size: clamp(48px, 6.8vw, 96px);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+      }
+
+      .lead {
+        color: var(--ink-soft);
+      }
+
+      .accent-italic {
+        color: var(--granada);
+        font-style: italic;
+      }
+
+      .headline-copy {
+        font-size: clamp(32px, 4vw, 54px);
+        font-weight: 300;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin: 0 0 60px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 42px;
+      }
+
+      .item-number {
+        color: var(--granada);
+        margin-bottom: 14px;
+        display: block;
+      }
+
+      .item-title {
+        margin: 0 0 10px;
+        font-size: clamp(36px, 3vw, 44px);
+        letter-spacing: -0.02em;
+      }
+
+      .para-list {
+        border-top: 1px solid var(--hairline);
+      }
+
+      .para-row {
+        display: grid;
+        grid-template-columns: 80px 1fr 2fr 48px;
+        gap: 30px;
+        align-items: center;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .para-row:hover {
+        background: color-mix(in srgb, var(--granada) 4%, transparent);
+      }
+
+      .para-row .item-number {
+        margin-bottom: 0;
+      }
+
+      .para-row h4 {
+        margin: 0;
+        font-size: clamp(28px, 3vw, 40px);
+        line-height: 1;
+        transition: all 0.35s;
+      }
+
+      .para-row p {
+        margin: 0;
+        color: var(--ink-soft);
+      }
+
+      .para-row:hover h4 {
+        color: var(--granada);
+        font-style: italic;
+      }
+
+      .arrow {
+        color: var(--granada);
+        font-size: 22px;
+        text-align: right;
+        opacity: 0.45;
+        transform: translateX(-8px);
+        transition: all 0.3s;
+      }
+
+      .para-row:hover .arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .planos-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .plan {
+        padding: 56px 48px;
+        border: 1px solid var(--hairline);
+      }
+
+      .plan:first-child {
+        background: var(--bg);
+      }
+
+      .plan-vip {
+        background: var(--granada);
+        color: var(--bg);
+        border-color: var(--granada);
+      }
+
+      .plan-header h3,
+      .plan-meta,
+      .plan-item,
+      .plan-cta {
+        margin-top: 16px;
+      }
+
+      .price {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+      }
+
+      .price strong {
+        font-size: 88px;
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        line-height: 1;
+        font-weight: 300;
+        letter-spacing: -0.03em;
+      }
+
+      .plan ul {
+        margin: 0;
+        padding: 24px 0 0;
+        list-style: none;
+      }
+
+      .plan li {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--hairline);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .plan li:last-child {
+        border-bottom: none;
+      }
+
+      .bio {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        gap: 72px;
+        align-items: start;
+      }
+
+      .photo-wrap {
+        position: relative;
+      }
+
+      .photo-blob {
+        width: min(360px, 88vw);
+        aspect-ratio: 3 / 4;
+        border-radius: 50% 50% 46% 54%;
+        overflow: hidden;
+        position: relative;
+        margin-left: -24px;
+        background: linear-gradient(135deg, var(--granada) 0%, var(--granada-deep) 100%);
+        transform: rotate(-8deg);
+      }
+
+      .photo-blob img {
+        width: 110%;
+        height: 110%;
+        object-fit: cover;
+        object-position: center top;
+        transform: rotate(8deg) translate(-8%, -7%);
+      }
+
+      .photo-overlay {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.08) 0 2px,
+          transparent 2px 14px
+        );
+      }
+
+      .photo-label {
+        position: absolute;
+        bottom: 18px;
+        left: 22px;
+        color: var(--bg);
+        font-size: 11px;
+      }
+
+      .stats {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        padding: 28px 0;
+        border-top: 1px solid var(--hairline);
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .stat {
+        font-size: 14px;
+      }
+
+      .stat-number {
+        font-size: 48px;
+        line-height: 1;
+        color: var(--granada);
+      }
+
+      .pill {
+        border-radius: 999px;
+        border: 1px solid var(--hairline);
+        padding: 4px 10px;
+        font-size: 11px;
+        color: var(--ink-soft);
+      }
+
+      .chips {
+        margin-top: 16px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .cta-band {
+        background: linear-gradient(135deg, rgba(241, 133, 35, 0.12), rgba(201, 106, 20, 0.18));
+        border: 1px solid color-mix(in srgb, var(--granada) 40%, var(--bg));
+      }
+
+      .cta-inner {
+        display: grid;
+        gap: 34px;
+      }
+
+      .cta-inner h2 {
+        margin: 0;
+        max-width: 1020px;
+        font-weight: 300;
+        font-size: clamp(44px, 7.8vw, 112px);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 18px 26px;
+        border-radius: 999px;
+        border: 1px solid var(--ink);
+        color: var(--ink);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        opacity: 0.92;
+      }
+
+      .btn--accent {
+        background: var(--granada);
+        border-color: transparent;
+        color: var(--bg);
+      }
+
+      .btn--dark {
+        background: var(--ink);
+        color: var(--bg);
+      }
+
+      .footer {
+        border-top: 1px solid var(--hairline);
+        background: var(--bg-2);
+        padding: 34px 0 40px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .sticky-cta {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        bottom: 14px;
+        z-index: 110;
+        display: none;
+      }
+
+      .sticky-cta a {
+        text-align: center;
+        padding: 14px 16px;
+        background: var(--ink);
+        color: var(--bg);
+      }
+
+      .reveal {
+        animation: reveal 0.75s ease both;
+      }
+
+      .reveal-delay-1 {
+        animation-delay: 0.1s;
+      }
+
+      .reveal-delay-2 {
+        animation-delay: 0.2s;
+      }
+
+      .reveal-delay-3 {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 1100px) {
+        :root {
+          --container: min(1180px, calc(100% - 36px));
+        }
+
+        .hero {
+          padding-top: 74px;
+        }
+
+        .split,
+        .grid-3,
+        .planos-wrapper,
+        .bio,
+        .hero-grid,
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-grid {
+          justify-content: center;
+        }
+
+        .section {
+          padding: 82px 0;
+        }
+
+        .photo-wrap,
+        .photo-blob {
+          margin: 0 auto;
+        }
+
+        .photo-blob {
+          transform: rotate(0);
+          width: min(380px, 86vw);
+        }
+
+        .photo-wrap .mono {
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .hero {
+          padding-top: 68px;
+          padding-bottom: 28px;
+        }
+
+        .marquee-copy {
+          gap: 20px;
+          padding: 14px 0;
+          font-size: 10px;
+          letter-spacing: 0.14em;
+        }
+
+        .hero-main {
+          min-height: calc(100dvh - 104px);
+          gap: 14px;
+        }
+
+        .hero-title {
+          font-size: clamp(46px, 15vw, 76px);
+          margin: 0 0 8px;
+        }
+
+        .hero-subcopy {
+          font-size: 15px;
+          line-height: 1.32;
+        }
+
+        .hero-copy {
+          max-width: 100%;
+        }
+
+        .para-row {
+          grid-template-columns: 42px 1fr 1fr auto;
+          gap: 16px;
+        }
+
+        .planos-wrapper {
+          grid-template-columns: 1fr;
+        }
+
+        .sticky-cta {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="grain">
+    <div class="page">
+      <section class="hero">
+        <div class="hero-marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <div class="marquee-copy">
+              <span>Ao vivo</span>
+              <span class="dot">•</span>
+              <span>21 + 22 de março</span>
+              <span>Ao vivo</span>
+              <span class="dot">•</span>
+              <span>21 + 22 de março</span>
+              <span>Ao vivo</span>
+              <span class="dot">•</span>
+              <span>21 + 22 de março</span>
+              <span>Ao vivo</span>
+              <span class="dot">•</span>
+              <span>21 + 22 de março</span>
+            </div>
+            <div class="marquee-copy">
+              <span>Ao vivo</span>
+              <span class="dot">•</span>
+              <span>21 + 22 de março</span>
+              <span>Ao vivo</span>
+              <span class="dot">•</span>
+              <span>21 + 22 de março</span>
+              <span>Ao vivo</span>
+              <span class="dot">•</span>
+              <span>21 + 22 de março</span>
+              <span>Ao vivo</span>
+              <span class="dot">•</span>
+              <span>21 + 22 de março</span>
+            </div>
+          </div>
+        </div>
+        <div class="shell hero-shell">
+          <div class="hero-main">
+            <div class="hero-grid reveal reveal-delay-1">
+              <div class="hero-copy">
+                <h1 class="hero-title serif">Marca<br /> <span>Inevitável</span></h1>
+                <p class="hero-subcopy">
+                  <strong>Sua marca está à altura da sua entrega?</strong><br />
+                  Se você entrega excelência, mas ainda não é percebido como deveria,
+                  existe um desalinhamento estratégico.
+                  <br /><br />Nos dias 21 e 22 de março, Yasmin Corbo conduz ao vivo a
+                  <strong>Imersão Marca Inevitável</strong>.
+                  <br />Dois dias para ajustar o que sustenta (ou limita) o crescimento da sua marca.
+                </p>
+                <div style="margin-top: 22px">
+                  <a class="btn btn--accent" href="#planos">QUERO GARANTIR MINHA VAGA</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main>
+        <section class="section" style="background: var(--bg);">
+          <div class="shell">
+            <p class="label"><span class="item-number mono">03</span><span class="mono">A verdade</span></p>
+            <div class="split">
+              <div>
+                <p class="hero-title serif" style="font-size: 42px; line-height: 1.1">A verdade</p>
+              </div>
+              <div>
+                <p class="serif" style="font-size: clamp(38px, 4.8vw, 56px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px">
+                  O mercado não premia esforço nem talento. 
+                  <span class="accent-italic">Premia clareza e posicionamento.</span>
+                </p>
+                <p class="lead" style="font-size: 18px; margin-bottom: 16px">
+                  Você pode ser excelente no que faz. 
+                  Mas se sua marca não traduz isso com estrutura, você continuará competindo por atenção.
+                </p>
+                <p class="lead">Uma marca inevitável é construção.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="imersao" class="section" style="background: #fff;">
+          <div class="shell">
+            <p class="label"><span class="mono item-number">04</span><span class="mono">O que é a imersão</span></p>
+            <div class="split">
+              <div>
+                <div style="position: sticky; top: 120px">
+                  <p class="mono" style="color: var(--granada); margin-bottom: 10px">A imersão</p>
+                  <h2 class="serif section-title" style="font-style: italic; color: var(--granada); font-size: clamp(36px, 3.4vw, 54px); margin-bottom: 20px">
+                    A imersão Marca Inevitável é um encontro estratégico ao vivo.
+                  </h2>
+                  <p class="lead">
+                    Nela, você entenderá os pilares que sustentam marcas que:
+                  </p>
+                  <ul class="para-list" style="list-style: none; margin: 16px 0 0; padding: 0; border-top: none">
+                    <li style="padding: 6px 0">● Não dependem apenas do fundador</li>
+                    <li style="padding: 6px 0">● Não brigam por preço</li>
+                    <li style="padding: 6px 0">● Não desaparecem quando o mercado oscila</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <p class="headline-copy serif">
+                  Dois dias intensivos com foco em visão, estrutura e direção.
+                </p>
+                <p class="lead" style="max-width: 620px; margin-bottom: 16px">
+                  Dirigida por Yasmin Corbo, responsável pela construção e posicionamento estratégico
+                  de marcas emocionantes.
+                </p>
+                <p class="lead" style="max-width: 620px; margin-bottom: 16px">
+                  Sua experiência em branding e estrutura de crescimento já ajudou empresários e criadores
+                  a saírem da invisibilidade e assumirem um posicionamento sólido no mercado através
+                  do método Marcas com Asas.
+                </p>
+                <p class="lead" style="max-width: 620px">
+                  Nesta imersão, ela compartilha os fundamentos que sustentam esse processo.
+                </p>
+                <div class="grid-3" style="margin-top: 52px">
+                  <article>
+                    <span class="mono item-number">01</span>
+                    <h3 class="serif item-title">Visão</h3>
+                    <p>Clareza do que sua marca é e do que ela não é. Direção estratégica.</p>
+                  </article>
+                  <article>
+                    <span class="mono item-number">02</span>
+                    <h3 class="serif item-title">Estrutura</h3>
+                    <p>O sistema que sustenta o crescimento quando o improviso já não basta.</p>
+                  </article>
+                  <article>
+                    <span class="mono item-number">03</span>
+                    <h3 class="serif item-title">Direção</h3>
+                    <p>Decisões executáveis, com plano de ação imediato e aplicação real no seu negócio.</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" style="background: var(--bg-2);">
+          <div class="shell">
+            <p class="label"><span class="mono item-number">05</span><span class="mono">Para quem é</span></p>
+            <h2 class="serif section-title">Para empresários, criadores e profissionais que:</h2>
+            <div class="para-list" style="margin-top: 18px">
+              <article class="para-row">
+                <span class="mono">01</span>
+                <h4 class="serif">Já atuam no mercado</h4>
+                <p>Não é o começo — é o próximo nível.</p>
+                <span class="arrow" aria-hidden="true">→</span>
+              </article>
+              <article class="para-row">
+                <span class="mono">02</span>
+                <h4 class="serif">Sabem que podem estar em outro patamar</h4>
+                <p>Sentem o teto invisível e querem romper.</p>
+                <span class="arrow" aria-hidden="true">→</span>
+              </article>
+              <article class="para-row">
+                <span class="mono">03</span>
+                <h4 class="serif">Não querem mais improvisar crescimento</h4>
+                <p>Buscam estrutura em vez de sorte.</p>
+                <span class="arrow" aria-hidden="true">→</span>
+              </article>
+              <article class="para-row">
+                <span class="mono">04</span>
+                <h4 class="serif">Estão prontos para decisões estratégicas</h4>
+                <p>Com coragem para organizar antes de escalar.</p>
+                <span class="arrow" aria-hidden="true">→</span>
+              </article>
+            </div>
+            <p class="lead" style="margin-top: 24px; max-width: 760px">
+              Se você procura fórmula rápida ou entretenimento, esta imersão não é para você.
+            </p>
+          </div>
+        </section>
+
+        <section id="yasmin" class="section" style="background: var(--bg-2);">
+          <div class="shell">
+            <p class="label"><span class="mono item-number">06</span><span class="mono">Quem é</span></p>
+            <div class="bio">
+              <div class="photo-wrap">
+                <div class="photo-blob">
+                  <img src="/bio_yas.webp" alt="Foto de Yasmin Corbo" />
+                  <span class="photo-overlay" aria-hidden="true"></span>
+                  <div class="photo-label mono">Yasmin Corbo</div>
+                </div>
+              <div class="chips">
+                <span class="pill">ESPM</span>
+                <span class="pill">Univ. Hebraica</span>
+                <span class="pill">Est. Romã</span>
+                <span class="pill">+150 marcas</span>
+              </div>
+              </div>
+              <div>
+                <h2 class="serif section-title" style="font-size: clamp(46px, 6vw, 82px);">
+                  <span class="accent-italic">Diretora de arte</span> por vocação,<br />
+                  estrategista de essência.
+                </h2>
+                <p class="lead" style="max-width: 620px; margin-bottom: 24px">
+                  Já conduziu processos estratégicos e criativos em mais de 150 marcas,
+                  no seu estúdio, a Romã, que hoje é referência nacional em Growth Branding.
+                  É casada com seu sócio, Duan Corbo, e mãe do Gael.
+                </p>
+                <p class="lead" style="max-width: 620px; margin-bottom: 24px">
+                  Estrategista de marca há quase uma década. Publicitária desde 2015, especialista em inovação pela Universidade Hebraica de Jerusalém e mestre em Economia Criativa pela ESPM.
+                </p>
+                <p class="lead" style="max-width: 620px; margin-bottom: 32px">
+                  Diretora de arte por vocação, mas estrategista de essência,
+                  cria marcas que crescem com clareza, vendem com consistência e sobrevivem a qualquer algoritmo.
+                  Unindo estética, posicionamento e inteligência de negócio, gera milhões em faturamento
+                  para empresários de diversos segmentos através do método Marcas com Asas.
+                </p>
+                <div class="stats">
+                  <div class="stat">
+                    <p class="stat-number serif">150+</p>
+                    <p class="mono text-soft">Marcas conduzidas</p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-number serif">09</p>
+                    <p class="mono text-soft">Anos de estratégia</p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-number serif">R$MM</p>
+                    <p class="mono text-soft">Gerados em marcas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="form" class="section">
+          <div class="shell" style="max-width: 900px">
+            <p class="label"><span class="mono item-number">07</span><span class="mono">As vagas</span></p>
+            <p class="serif" style="font-size: clamp(32px, 5vw, 68px); line-height: 1.08; margin: 0 0 18px">
+              21 e 22 de março • 100% Online • Ao vivo
+            </p>
+            <p class="lead" style="max-width: 760px; margin-bottom: 10px">Inscrição: R$25</p>
+            <p class="lead" style="max-width: 760px">
+              20 vagas. As vagas são limitadas.<br />
+              O valor não é pelo conteúdo.
+              <br />É pelo nível de comprometimento.
+            </p>
+          </div>
+        </section>
+
+        <section id="planos" class="section" style="background: var(--bg);">
+          <div class="shell">
+            <p class="label"><span class="mono item-number">08</span><span class="mono">Planos de acesso</span></p>
+            <div class="planos-wrapper">
+              <article class="plan">
+                <p class="mono text-soft" style="margin-bottom: 4px">Plano 01</p>
+                <h3 class="serif" style="margin: 0 0 16px; font-size: 36px; font-weight: 400">Acesso Padrão</h3>
+                <div class="price">
+                  <span class="mono">R$</span>
+                  <strong>35</strong>
+                </div>
+                <p class="mono text-soft">Pagamento único</p>
+                <p class="text-soft" style="margin-top: 14px">
+                  1º lote (cronômetro fim do primeiro lote)
+                </p>
+                <ul>
+                  <li><span class="mono" style="color: var(--granada); font-size: 12px;">◆</span>Acesso à Imersão ao vivo</li>
+                  <li><span class="mono" style="color: var(--granada); font-size: 12px;">◆</span>Método direto ao ponto</li>
+                  <li><span class="mono" style="color: var(--granada); font-size: 12px;">◆</span>Aulas 100% ao vivo</li>
+                  <li><span class="mono" style="color: var(--granada); font-size: 12px;">◆</span>Passo a passo aplicável</li>
+                  <li><span class="mono" style="color: var(--granada); font-size: 12px;">◆</span>+ de 10h de conteúdo transformador</li>
+                </ul>
+                <p class="text-soft" style="font-style: italic; margin-top: 10px">
+                  Este acesso não inclui gravações.
+                </p>
+                <a href={standardCheckout} class="btn btn--dark" style="margin-top: 26px; display: inline-block">INGRESSO PADRÃO</a>
+              </article>
+              <article class="plan plan-vip" id="vaga">
+                <p class="mono" style="margin-bottom: 4px; color: rgba(255, 255, 255, 0.7)">Plano 02</p>
+                <h3 class="serif" style="margin: 0 0 16px; font-size: 36px; font-weight: 400; font-style: italic">Acesso VIP</h3>
+                <div class="price">
+                  <span class="mono" style="opacity: 0.75">R$</span>
+                  <strong>130</strong>
+                </div>
+                <p class="mono" style="opacity: 0.75">Pagamento único</p>
+                <p style="margin: 18px 0 8px; opacity: 0.75">
+                  Inscrição: R$25
+                </p>
+                <ul>
+                  <li><span class="mono" style="color: #fff; font-size: 12px;">◆</span>Acesso à imersão ao vivo</li>
+                  <li><span class="mono" style="color: #fff; font-size: 12px;">◆</span>Gravação completa das aulas</li>
+                  <li><span class="mono" style="color: #fff; font-size: 12px;">◆</span>Encontro em grupo com Yasmin</li>
+                  <li><span class="mono" style="color: #fff; font-size: 12px;">◆</span>Conteúdos exclusivos do Clube Marcas com Asas</li>
+                  <li><span class="mono" style="color: #fff; font-size: 12px;">◆</span>Acesso à Escola de CEO&apos;s</li>
+                </ul>
+                <p style="font-style: italic; opacity: 0.8; margin-top: 8px">
+                  Inclui tudo do Acesso Padrão + extras exclusivos.
+                </p>
+                <a href={vipCheckout} class="btn" style="margin-top: 26px; display: inline-block; background: #fff; color: var(--ink)">ACESSO VIP</a>
+              </article>
+            </div>
+
+            <p class="text-soft" style="margin-top: 18px">
+              20 vagas. As vagas são limitadas. O valor não é pelo conteúdo. É pelo nível de comprometimento.
+            </p>
+          </div>
+        </section>
+
+        <section class="section cta-band">
+          <div class="shell">
+            <div class="cta-inner">
+              <p class="label"><span class="mono item-number">09</span><span class="mono">A decisão</span></p>
+              <h2 class="serif">
+                Você pode continuar tentando crescer <span class="accent-italic text-soft">no improviso.</span>
+                <br />
+                Ou estruturar sua marca para se tornar <span class="accent-italic">inevitável.</span>
+              </h2>
+              <p class="lead" style="max-width: 520px; font-style: italic">
+                A decisão é estratégica.
+                As inscrições se encerram quando as vagas forem preenchidas.
+              </p>
+              <div>
+                <a href={standardCheckout} class="btn btn--accent">GARANTIR MINHA VAGA POR R$25</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="section footer">
+        <div class="shell" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px">
+          <p class="mono">© 2026 — Clube Marcas com Asas</p>
+          <div style="display: flex; gap: 18px; flex-wrap: wrap">
+            <a class="mono" href="#">Termos</a>
+            <a class="mono" href="#">Privacidade</a>
+            <a class="mono" href="#">Contato</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <aside class="sticky-cta">
+      <a class="btn btn--dark" href="#vaga">Garantir minha vaga</a>
+    </aside>
+  </body>
+</html>
