@@ -6,10 +6,10 @@ import { pageAssets, withBasePath } from '../src/lib/asset-paths.js';
 import { eventDateLabel, marqueeDateLabel, standardTicketPrice } from '../src/lib/landing-content.js';
 
 test('withBasePath aplica BASE_URL sem quebrar os caminhos de asset', () => {
-  assert.equal(withBasePath('/', 'fonts/Aileron-Bold.ttf'), '/fonts/Aileron-Bold.ttf');
+  assert.equal(withBasePath('/', 'fonts/Aileron-ExtraBold.woff'), '/fonts/Aileron-ExtraBold.woff');
   assert.equal(
-    withBasePath('/pagina-roma/', 'fonts/Aileron-Bold.ttf'),
-    '/pagina-roma/fonts/Aileron-Bold.ttf'
+    withBasePath('/pagina-roma/', 'fonts/Aileron-ExtraBold.woff'),
+    '/pagina-roma/fonts/Aileron-ExtraBold.woff'
   );
   assert.equal(
     withBasePath('/pagina-roma', '/assets/marca-inevitavel-hero.webp'),
@@ -20,6 +20,7 @@ test('withBasePath aplica BASE_URL sem quebrar os caminhos de asset', () => {
 test('os assets publicados da landing existem dentro de public', async () => {
   await Promise.all([
     access(`public/${pageAssets.hero}`),
+    access(`public/${pageAssets.logo}`),
     access(`public/${pageAssets.portrait}`),
     access(`public/${pageAssets.fontEditorialRegular}`),
     access(`public/${pageAssets.fontEditorialItalic}`),

@@ -8,14 +8,16 @@ const standardCheckout =
 const vipCheckout =
   import.meta.env.PUBLIC_VIP_CHECKOUT ??
   'https://lastlink.com/p/C11C7A91B/checkout-payment';
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '1269431951336148';
 
 const assetPath = (path) => withBasePath(import.meta.env.BASE_URL, path);
 const assetStyleVars = [
-  `--font-editorial-regular-src: url("${assetPath(pageAssets.fontEditorialRegular)}") format("truetype")`,
-  `--font-editorial-italic-src: url("${assetPath(pageAssets.fontEditorialItalic)}") format("truetype")`,
-  `--font-aileron-bold-src: url("${assetPath(pageAssets.fontAileronBold)}") format("truetype")`,
+  `--font-editorial-regular-src: url("${assetPath(pageAssets.fontEditorialRegular)}") format("woff")`,
+  `--font-editorial-italic-src: url("${assetPath(pageAssets.fontEditorialItalic)}") format("woff")`,
+  `--font-aileron-bold-src: url("${assetPath(pageAssets.fontAileronBold)}") format("woff")`,
   `--hero-image: url("${assetPath(pageAssets.hero)}")`
 ].join('; ');
+const logoImage = assetPath(pageAssets.logo);
 const portraitImage = assetPath(pageAssets.portrait);
 const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 ---
@@ -30,9 +32,29 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       content="Imersão Marca Inevitável — imersão estratégica ao vivo com Yasmin Corbo."
     />
     <title>Marca Inevitável — Imersão com Yasmin Corbo</title>
+    <script is:inline define:vars={{ metaPixelId }}>
+      !function(f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function() {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = true;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', metaPixelId);
+      fbq('track', 'PageView');
+    </script>
     <style>
       @font-face {
-        font-family: 'PP Editorial Old';
+        font-family: 'PP Editorial New';
         src: var(--font-editorial-regular-src);
         font-style: normal;
         font-weight: 400;
@@ -40,7 +62,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       }
 
       @font-face {
-        font-family: 'PP Editorial Old';
+        font-family: 'PP Editorial New';
         src: var(--font-editorial-italic-src);
         font-style: italic;
         font-weight: 400;
@@ -48,18 +70,18 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       }
 
       @font-face {
-        font-family: 'Aileron Brand';
+        font-family: 'Aileron Extra Bold';
         src: var(--font-aileron-bold-src);
         font-style: normal;
-        font-weight: 400;
+        font-weight: 800;
         font-display: swap;
       }
 
       @font-face {
-        font-family: 'Aileron Brand';
+        font-family: 'Aileron Extra Bold';
         src: var(--font-aileron-bold-src);
         font-style: normal;
-        font-weight: 700;
+        font-weight: 900;
         font-display: swap;
       }
 
@@ -87,7 +109,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
         margin: 0;
         background: var(--bg);
         color: var(--ink);
-        font-family: 'Aileron Brand', Arial, sans-serif;
+        font-family: 'Aileron Extra Bold', Arial, sans-serif;
         font-size: 16px;
         line-height: 1.55;
         font-synthesis: none;
@@ -104,11 +126,11 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       }
 
       .serif {
-        font-family: 'PP Editorial Old', Georgia, serif;
+        font-family: 'PP Editorial New', Georgia, serif;
       }
 
       .mono {
-        font-family: 'Aileron Brand', Arial, sans-serif;
+        font-family: 'Aileron Extra Bold', Arial, sans-serif;
         letter-spacing: 0.11em;
         text-transform: uppercase;
         font-size: 11px;
@@ -182,7 +204,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
         padding: 16px 12px;
         white-space: nowrap;
         color: var(--granada);
-        font-family: 'Aileron Brand', Arial, sans-serif;
+        font-family: 'Aileron Extra Bold', Arial, sans-serif;
         font-size: 11px;
         letter-spacing: 0.18em;
         line-height: 1;
@@ -232,6 +254,29 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       .hero-title span {
         color: var(--granada);
         font-style: italic;
+      }
+
+      .hero-logo-title {
+        margin: 0 0 14px;
+        width: min(920px, 92vw);
+      }
+
+      .hero-logo {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
       .hero-grid {
@@ -694,6 +739,11 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
           margin: 0 0 8px;
         }
 
+        .hero-logo-title {
+          width: min(680px, 96vw);
+          margin-bottom: 10px;
+        }
+
         .hero-subcopy {
           font-size: 15px;
           line-height: 1.32;
@@ -720,6 +770,15 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
   </head>
 
   <body class="grain">
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display:none"
+        src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
+        alt=""
+      />
+    </noscript>
     <div class="page">
       <section class="hero">
         <div class="hero-marquee" aria-hidden="true">
@@ -758,7 +817,10 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
           <div class="hero-main">
             <div class="hero-grid reveal reveal-delay-1">
               <div class="hero-copy">
-                <h1 class="hero-title serif">Marca<br /> <span>Inevitável</span></h1>
+                <h1 class="hero-logo-title">
+                  <span class="sr-only">Marca Inevitável</span>
+                  <img class="hero-logo" src={logoImage} alt="" />
+                </h1>
                 <p class="hero-subcopy">
                   <strong>Sua marca está à altura da sua entrega?</strong><br />
                   Se você entrega excelência, mas ainda não é percebido como deveria,

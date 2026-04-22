@@ -21,8 +21,9 @@ export const withBasePath = (basePath = '/', assetPath = '') => {
 
 export const pageAssets = {
   hero: 'assets/marca-inevitavel-hero.webp',
+  logo: 'assets/logo-imersao.webp',
   portrait: 'assets/bio_yas.webp',
-  fontEditorialRegular: 'fonts/PPEDITORIALOLD-REGULAR.ttf',
-  fontEditorialItalic: 'fonts/PPEDITORIALOLD-ITALIC.ttf',
-  fontAileronBold: 'fonts/Aileron-Bold.ttf'
+  fontEditorialRegular: 'fonts/PPEditorialNew-Regular.woff',
+  fontEditorialItalic: 'fonts/PPEditorialNew-Italic.woff',
+  fontAileronBold: 'fonts/Aileron-ExtraBold.woff'
 };
