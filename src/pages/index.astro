@@ -4,10 +4,10 @@ import { eventDateLabel, marqueeDateLabel, standardTicketPrice } from '../lib/la
 
 const standardCheckout =
   import.meta.env.PUBLIC_STANDARD_CHECKOUT ??
-  'https://lastlink.com/p/C9A97E88D/checkout-payment';
+  'https://lastlink.com/p/C1E35F246/checkout-payment/';
 const vipCheckout =
   import.meta.env.PUBLIC_VIP_CHECKOUT ??
-  'https://lastlink.com/p/C11C7A91B/checkout-payment';
+  'https://lastlink.com/p/CAE5E5C5D/checkout-payment/';
 const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '1269431951336148';
 
 const assetPath = (path) => withBasePath(import.meta.env.BASE_URL, path);
@@ -745,8 +745,28 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
         }
 
         .para-row {
-          grid-template-columns: 42px 1fr 1fr auto;
+          grid-template-columns: 1fr auto;
           gap: 16px;
+          align-items: start;
+        }
+
+        .para-row h4,
+        .para-row p {
+          grid-column: 1;
+        }
+
+        .para-row h4 {
+          line-height: 1.08;
+        }
+
+        .para-row p {
+          line-height: 1.45;
+        }
+
+        .para-row .arrow {
+          grid-column: 2;
+          grid-row: 1 / span 2;
+          align-self: center;
         }
 
         .planos-wrapper {
