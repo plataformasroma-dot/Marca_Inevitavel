@@ -370,12 +370,6 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
         gap: 42px;
       }
 
-      .item-number {
-        color: var(--granada);
-        margin-bottom: 14px;
-        display: block;
-      }
-
       .item-title {
         margin: 0 0 10px;
         font-size: clamp(36px, 3vw, 44px);
@@ -388,7 +382,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 
       .para-row {
         display: grid;
-        grid-template-columns: 80px 1fr 2fr 48px;
+        grid-template-columns: 1fr 2fr 48px;
         gap: 30px;
         align-items: center;
         padding: 24px 0;
@@ -397,10 +391,6 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 
       .para-row:hover {
         background: color-mix(in srgb, var(--granada) 4%, transparent);
-      }
-
-      .para-row .item-number {
-        margin-bottom: 0;
       }
 
       .para-row h4 {
@@ -544,7 +534,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       .stats {
         margin-top: 24px;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 30px;
         padding: 28px 0;
         border-top: 1px solid var(--hairline);
@@ -842,7 +832,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       <main>
         <section class="section" style="background: var(--bg);">
           <div class="shell">
-            <p class="label"><span class="item-number mono">03</span><span class="mono">A verdade</span></p>
+            <p class="label"><span class="mono">A verdade</span></p>
             <div class="split">
               <div>
                 <p class="hero-title serif" style="font-size: 42px; line-height: 1.1">A verdade</p>
@@ -864,7 +854,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 
         <section id="imersao" class="section" style="background: #fff;">
           <div class="shell">
-            <p class="label"><span class="mono item-number">04</span><span class="mono">O que é a imersão</span></p>
+            <p class="label"><span class="mono">O que é a imersão</span></p>
             <div class="split">
               <div>
                 <div style="position: sticky; top: 120px">
@@ -900,17 +890,14 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
                 </p>
                 <div class="grid-3" style="margin-top: 52px">
                   <article>
-                    <span class="mono item-number">01</span>
                     <h3 class="serif item-title">Visão</h3>
                     <p>Clareza do que sua marca é e do que ela não é. Direção estratégica.</p>
                   </article>
                   <article>
-                    <span class="mono item-number">02</span>
                     <h3 class="serif item-title">Estrutura</h3>
                     <p>O sistema que sustenta o crescimento quando o improviso já não basta.</p>
                   </article>
                   <article>
-                    <span class="mono item-number">03</span>
                     <h3 class="serif item-title">Direção</h3>
                     <p>Decisões executáveis, com plano de ação imediato e aplicação real no seu negócio.</p>
                   </article>
@@ -922,29 +909,25 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 
         <section class="section" style="background: var(--bg-2);">
           <div class="shell">
-            <p class="label"><span class="mono item-number">05</span><span class="mono">Para quem é</span></p>
+            <p class="label"><span class="mono">Para quem é</span></p>
             <h2 class="serif section-title">Para empresários, criadores e profissionais que:</h2>
             <div class="para-list" style="margin-top: 18px">
               <article class="para-row">
-                <span class="mono">01</span>
                 <h4 class="serif">Já atuam no mercado</h4>
                 <p>Não é o começo — é o próximo nível.</p>
                 <span class="arrow" aria-hidden="true">→</span>
               </article>
               <article class="para-row">
-                <span class="mono">02</span>
                 <h4 class="serif">Sabem que podem estar em outro patamar</h4>
                 <p>Sentem o teto invisível e querem romper.</p>
                 <span class="arrow" aria-hidden="true">→</span>
               </article>
               <article class="para-row">
-                <span class="mono">03</span>
                 <h4 class="serif">Não querem mais improvisar crescimento</h4>
                 <p>Buscam estrutura em vez de sorte.</p>
                 <span class="arrow" aria-hidden="true">→</span>
               </article>
               <article class="para-row">
-                <span class="mono">04</span>
                 <h4 class="serif">Estão prontos para decisões estratégicas</h4>
                 <p>Com coragem para organizar antes de escalar.</p>
                 <span class="arrow" aria-hidden="true">→</span>
@@ -958,7 +941,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 
         <section id="yasmin" class="section" style="background: var(--bg-2);">
           <div class="shell">
-            <p class="label"><span class="mono item-number">06</span><span class="mono">Quem é</span></p>
+            <p class="label"><span class="mono">Quem é</span></p>
             <div class="bio">
               <div class="photo-wrap">
                 <div class="photo-blob">
@@ -998,12 +981,8 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
                     <p class="mono text-soft">Marcas conduzidas</p>
                   </div>
                   <div class="stat">
-                    <p class="stat-number serif">09</p>
+                    <p class="stat-number serif">11</p>
                     <p class="mono text-soft">Anos de estratégia</p>
-                  </div>
-                  <div class="stat">
-                    <p class="stat-number serif">R$MM</p>
-                    <p class="mono text-soft">Gerados em marcas</p>
                   </div>
                 </div>
               </div>
@@ -1013,22 +992,17 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 
         <section id="form" class="section">
           <div class="shell" style="max-width: 900px">
-            <p class="label"><span class="mono item-number">07</span><span class="mono">As vagas</span></p>
+            <p class="label"><span class="mono">As vagas</span></p>
             <p class="serif" style="font-size: clamp(32px, 5vw, 68px); line-height: 1.08; margin: 0 0 18px">
               {eventDateLabel} • 100% Online • Ao vivo
             </p>
             <p class="lead" style="max-width: 760px; margin-bottom: 10px">Inscrição: {standardTicketPriceLabel}</p>
-            <p class="lead" style="max-width: 760px">
-              20 vagas. As vagas são limitadas.<br />
-              O valor não é pelo conteúdo.
-              <br />É pelo nível de comprometimento.
-            </p>
           </div>
         </section>
 
         <section id="planos" class="section" style="background: var(--bg);">
           <div class="shell">
-            <p class="label"><span class="mono item-number">08</span><span class="mono">Planos de acesso</span></p>
+            <p class="label"><span class="mono">Planos de acesso</span></p>
             <div class="planos-wrapper">
               <article class="plan">
                 <p class="mono text-soft" style="margin-bottom: 4px">Plano 01</p>
@@ -1037,10 +1011,6 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
                   <span class="mono">R$</span>
                   <strong>35</strong>
                 </div>
-                <p class="mono text-soft">Pagamento único</p>
-                <p class="text-soft" style="margin-top: 14px">
-                  1º lote (cronômetro fim do primeiro lote)
-                </p>
                 <ul>
                   <li><span class="mono" style="color: var(--granada); font-size: 12px;">◆</span>Acesso à Imersão ao vivo</li>
                   <li><span class="mono" style="color: var(--granada); font-size: 12px;">◆</span>Método direto ao ponto</li>
@@ -1060,10 +1030,6 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
                   <span class="mono" style="opacity: 0.75">R$</span>
                   <strong>130</strong>
                 </div>
-                <p class="mono" style="opacity: 0.75">Pagamento único</p>
-                <p style="margin: 18px 0 8px; opacity: 0.75">
-                  Inscrição: {standardTicketPriceLabel}
-                </p>
                 <ul>
                   <li><span class="mono" style="color: #fff; font-size: 12px;">◆</span>Acesso à imersão ao vivo</li>
                   <li><span class="mono" style="color: #fff; font-size: 12px;">◆</span>Gravação completa das aulas</li>
@@ -1074,20 +1040,19 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
                 <p style="font-style: italic; opacity: 0.8; margin-top: 8px">
                   Inclui tudo do Acesso Padrão + extras exclusivos.
                 </p>
+                <p style="opacity: 0.8; margin-top: 18px">
+                  20 vagas. As vagas são limitadas. O valor não é pelo conteúdo. É pelo nível de comprometimento.
+                </p>
                 <a href={vipCheckout} class="btn" style="margin-top: 26px; display: inline-block; background: #fff; color: var(--ink)">ACESSO VIP</a>
               </article>
             </div>
-
-            <p class="text-soft" style="margin-top: 18px">
-              20 vagas. As vagas são limitadas. O valor não é pelo conteúdo. É pelo nível de comprometimento.
-            </p>
           </div>
         </section>
 
         <section class="section cta-band">
           <div class="shell">
             <div class="cta-inner">
-              <p class="label"><span class="mono item-number">09</span><span class="mono">A decisão</span></p>
+              <p class="label"><span class="mono">A decisão</span></p>
               <h2 class="serif">
                 Você pode continuar tentando crescer <span class="accent-italic text-soft">no improviso.</span>
                 <br />
