@@ -97,7 +97,7 @@ Para empresários, criadores e profissionais que:
 
 Quem é Yasmin Corbo?
 
-Já conduziu processos estratégicos e criativos em mais de 150 marcas,  
+Já conduziu processos estratégicos e criativos em mais de 170 marcas,  
 no seu estúdio, a Romã, que hoje é referência nacional  
 em Growth Branding. É casada com seu sócio, Duan Corbo,  
 e mãe do Gael.

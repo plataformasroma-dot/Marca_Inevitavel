@@ -204,7 +204,7 @@ function Yasmin() {
             </div>
           </div>
           <div style={{ marginTop: 24, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {['ESPM', 'Univ. Hebraica', 'Est. Romã', '+150 marcas'].map(t => (
+            {['ESPM', 'Univ. Hebraica', 'Est. Romã', '+170 marcas'].map(t => (
               <span key={t} style={{
                 padding: '6px 12px',
                 border: '1px solid var(--hairline)',
@@ -230,7 +230,7 @@ function Yasmin() {
           </h2>
 
           <p style={{ fontSize: 17, color: 'var(--ink-soft)', lineHeight: 1.65, marginBottom: 24 }}>
-            Yasmin conduziu processos estratégicos e criativos em <strong style={{ color: 'var(--ink)' }}>mais de 150 marcas</strong> no seu estúdio, <em className="serif" style={{ fontSize: 19 }}>a Romã</em> — hoje referência nacional em Growth Branding.
+            Yasmin conduziu processos estratégicos e criativos em <strong style={{ color: 'var(--ink)' }}>mais de 170 marcas</strong> no seu estúdio, <em className="serif" style={{ fontSize: 19 }}>a Romã</em> — hoje referência nacional em Growth Branding.
           </p>
 
           <p style={{ fontSize: 17, color: 'var(--ink-soft)', lineHeight: 1.65, marginBottom: 24 }}>
@@ -250,7 +250,7 @@ function Yasmin() {
             gap: 32
           }}>
             <div>
-              <div className="serif" style={{ fontSize: 48, fontWeight: 300, color: 'var(--granada)', lineHeight: 1 }}>150+</div>
+              <div className="serif" style={{ fontSize: 48, fontWeight: 300, color: 'var(--granada)', lineHeight: 1 }}>170+</div>
               <div className="mono" style={{ color: 'var(--muted)', marginTop: 8 }}>Marcas conduzidas</div>
             </div>
             <div>
