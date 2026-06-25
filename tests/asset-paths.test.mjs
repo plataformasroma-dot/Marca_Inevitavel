@@ -30,6 +30,6 @@ test('os assets publicados da landing existem dentro de public', async () => {
 
 test('a copy comercial expõe a data e o valor corretos', () => {
   assert.equal(standardTicketPrice, '35');
-  assert.equal(eventDateLabel, '25 e 26 de abril');
-  assert.equal(marqueeDateLabel, '25 e 26 de abril');
+  assert.equal(eventDateLabel, '25 e 26 de julho');
+  assert.equal(marqueeDateLabel, '25 e 26 de julho');
 });

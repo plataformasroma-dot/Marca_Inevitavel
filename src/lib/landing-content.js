@@ -1,3 +1,3 @@
-export const eventDateLabel = '6 e 7 de junho';
+export const eventDateLabel = '25 e 26 de julho';
 export const marqueeDateLabel = eventDateLabel;
 export const standardTicketPrice = '35';
