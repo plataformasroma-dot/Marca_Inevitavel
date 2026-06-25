@@ -768,6 +768,26 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
           max-width: 100%;
         }
 
+        .truth-section {
+          padding: 56px 0 64px;
+        }
+
+        .truth-section .label {
+          margin-bottom: 28px;
+        }
+
+        .truth-section .split {
+          gap: 0;
+        }
+
+        .truth-section .truth-spacer {
+          display: none;
+        }
+
+        .truth-section .split > div:last-child > .serif {
+          margin-top: 0;
+        }
+
         .para-row {
           grid-template-columns: 1fr auto;
           gap: 16px;
@@ -889,11 +909,11 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       </section>
 
       <main>
-        <section class="section" style="background: var(--bg);">
+        <section class="section truth-section" style="background: var(--bg);">
           <div class="shell">
             <p class="label"><span class="mono">A verdade</span></p>
             <div class="split">
-              <div>
+              <div class="truth-spacer">
                 <p class="hero-title serif" style="font-size: 42px; line-height: 1.1">A verdade</p>
               </div>
               <div>
