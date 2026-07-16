@@ -17,6 +17,7 @@ const assetStyleVars = [
 const logoImage = assetPath(pageAssets.logo);
 const portraitImage = assetPath(pageAssets.portrait);
 const standardTicketPriceLabel = `R$${standardTicketPrice}`;
+const eventCountdownTarget = '2026-07-25T00:00:00-03:00';
 ---
 
 <!doctype html>
@@ -265,6 +266,24 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
         height: auto;
       }
 
+      .countdown {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        margin: 0 0 18px;
+        padding: 10px 18px;
+        border: 1px solid rgba(245, 240, 232, 0.2);
+        border-radius: 999px;
+        background: rgba(4, 8, 34, 0.54);
+        color: var(--granada);
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        line-height: 1;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+      }
+
       .sr-only {
         position: absolute;
         width: 1px;
@@ -495,6 +514,15 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 
       .plan li:last-child {
         border-bottom: none;
+      }
+
+      .seats-left {
+        margin: 22px 0 0;
+        color: var(--granada);
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        line-height: 1.2;
+        text-transform: uppercase;
       }
 
       .bio {
@@ -756,7 +784,15 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
 
         .hero-logo-title {
           width: min(560px, 86vw);
-          margin-bottom: 10px;
+          margin-bottom: 8px;
+        }
+
+        .countdown {
+          min-height: 36px;
+          margin-bottom: 14px;
+          padding: 9px 14px;
+          font-size: 10px;
+          letter-spacing: 0.12em;
         }
 
         .hero-subcopy {
@@ -891,6 +927,14 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
                   <span class="sr-only">Marca Inevitável</span>
                   <img class="hero-logo" src={logoImage} alt="" />
                 </h1>
+                <div
+                  class="countdown"
+                  data-countdown
+                  data-countdown-target={eventCountdownTarget}
+                  aria-live="polite"
+                >
+                  faltam --d --h --m --s
+                </div>
                 <p class="hero-subcopy">
                   <strong>Sua marca está à altura da sua entrega?</strong><br />
                   Se você entrega excelência, mas ainda não é percebido como deveria,
@@ -1110,6 +1154,7 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
                 <p class="text-soft" style="font-style: italic; margin-top: 10px">
                   Este acesso não inclui gravações.
                 </p>
+                <p class="seats-left">Restam poucas vagas</p>
                 <a href={standardCheckout} class="btn btn--accent" style="margin-top: 26px; display: inline-block">GARANTIR MEU INGRESSO</a>
               </article>
             </div>
@@ -1153,6 +1198,27 @@ const standardTicketPriceLabel = `R$${standardTicketPrice}`;
       <a class="btn btn--dark" href={standardCheckout}>Garantir meu ingresso</a>
     </aside>
     <script is:inline>
+      const countdown = document.querySelector('[data-countdown]');
+
+      if (countdown) {
+        const targetDate = new Date(countdown.dataset.countdownTarget);
+
+        const renderCountdown = () => {
+          const remainingMs = Math.max(targetDate.getTime() - Date.now(), 0);
+          const totalSeconds = Math.floor(remainingMs / 1000);
+          const totalMinutes = Math.floor(totalSeconds / 60);
+          const days = Math.floor(totalMinutes / 1440);
+          const hours = Math.floor((totalMinutes % 1440) / 60);
+          const minutes = totalMinutes % 60;
+          const seconds = totalSeconds % 60;
+
+          countdown.textContent = `faltam ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        };
+
+        renderCountdown();
+        setInterval(renderCountdown, 1000);
+      }
+
       const stickyCta = document.querySelector('.sticky-cta');
       const stickyWatchTargets = document.querySelectorAll('.hero .btn, #planos, .cta-band');
 
