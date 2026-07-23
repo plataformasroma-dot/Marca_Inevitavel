@@ -25,5 +25,9 @@ export const pageAssets = {
   portrait: 'assets/bio_yas.webp',
   fontEditorialRegular: 'fonts/PPEditorialNew-Regular.woff',
   fontEditorialItalic: 'fonts/PPEditorialNew-Italic.woff',
-  fontAileronBold: 'fonts/Aileron-ExtraBold.woff'
+  fontAileronBold: 'fonts/Aileron-ExtraBold.woff',
+  fontEditorialOldRegular: 'fonts/PPEditorialOld-Regular.otf',
+  fontEditorialOldItalic: 'fonts/PPEditorialOld-Italic.otf',
+  fontAileronRegular: 'fonts/Aileron-Regular.otf',
+  fontAileronBoldOtf: 'fonts/Aileron-Bold.otf'
 };
